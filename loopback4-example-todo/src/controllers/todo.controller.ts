@@ -27,6 +27,7 @@ export class TodoController {
     @inject('services.Geocoder') protected geoService: Geocoder,
   ) {}
 
+  @authenticate('jwt')
   @post('/todos', {
     responses: {
       '200': {
@@ -65,7 +66,6 @@ export class TodoController {
     return this.todoRepository.create(todo);
   }
 
-  @authenticate('jwt')
   @get('/todos/{id}', {
     responses: {
       '200': {
@@ -100,6 +100,7 @@ export class TodoController {
     return this.todoRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @put('/todos/{id}', {
     responses: {
       '204': {
@@ -114,6 +115,7 @@ export class TodoController {
     await this.todoRepository.replaceById(id, todo);
   }
 
+  @authenticate('jwt')
   @patch('/todos/{id}', {
     responses: {
       '204': {
@@ -135,6 +137,7 @@ export class TodoController {
     await this.todoRepository.updateById(id, todo);
   }
 
+  @authenticate('jwt')
   @del('/todos/{id}', {
     responses: {
       '204': {
